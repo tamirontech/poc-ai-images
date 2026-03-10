@@ -1,0 +1,24 @@
+{
+  "campaign_name": "Summer Tech 2026 Launch",
+  "target_region": "North America",
+  "target_audience": "Early adopters aged 18-35 interested in AI technology",
+  "campaign_message": "Revolutionary AI technology that changes everything",
+  "products": [
+    "AI Assistant Pro",
+    "Smart Hub 2.0"
+  ],
+  "aspect_ratios": [
+    "1:1",
+    "9:16",
+    "16:9"
+  ],
+  "visual_guidelines": {
+    "brand_colors": [
+      "#FF6B35",
+      "#004E89",
+      "#FFFFFF"
+    ],
+    "logo_required": true,
+    "tone": "modern, innovative, bold"
+  }
+}

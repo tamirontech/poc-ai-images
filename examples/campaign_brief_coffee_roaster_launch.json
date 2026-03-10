@@ -1,0 +1,25 @@
+{
+  "target_region": "Greater Toronto Area",
+  "target_audience": "Instagram and Meta shoppers aged 24-45 who buy premium coffee beans online and respond to strong product visuals, tasting notes, and small-batch quality claims",
+  "campaign_message": "Shop small-batch coffee roasted for bold flavor every morning.",
+  "products": [
+    "Single Origin Ethiopia",
+    "Espresso House Blend"
+  ],
+  "language": "en",
+  "brand_colors": [
+    "#4B2E1F",
+    "#C17A3D",
+    "#F2E8DC"
+  ],
+  "reference_image_path": "input_assets/coffee-bags.jpg",
+  "logo_path": "input_assets/kahawa-company-logo.jpeg",
+  "logo_position": "top-left",
+  "logo_scale": 0.15,
+  "aspect_ratios": [
+    "1:1",
+    "9:16",
+    "16:9"
+  ],
+  "additional_context": "Create a polished Meta and Instagram product advertisement focused on packaged coffee for feed and story placements. Show one featured coffee bag prominently in the foreground with supporting coffee props, clean negative space for ad copy, premium lifestyle styling, warm morning light, and a mobile-first composition that feels scroll-stopping and purchase-driven. Emphasize product visibility, packaging clarity, rich coffee texture, and a premium small-batch brand aesthetic."
+}

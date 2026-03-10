@@ -1,0 +1,50 @@
+target_region: Pacific Northwest
+
+target_audience: Home baristas and specialty coffee subscribers who enjoy cozy seasonal coffee rituals, manual brewing, and sharing their coffee setups on social media.
+
+campaign_message: "Cozy up with our winter roast collection, crafted for rich, cafe-quality brews at home."
+
+products:
+  - Winter Spice Blend
+  - Holiday Espresso Roast
+
+language: en
+
+brand_colors:
+  - "#2E241D"
+  - "#8B5A3C"
+  - "#D9B38C"
+
+logo_path: "input_assets/kahawa-company-logo.jpeg"
+logo_position: "top-left"
+logo_scale: 0.15
+
+aspect_ratios:
+  - "1:1"
+  - "9:16"
+  - "16:9"
+
+additional_context: >
+  Authentic lifestyle scene in a Pacific Northwest home kitchen during winter morning.
+  Natural window light with light snowfall visible outside. Wooden countertop with
+  a handcrafted ceramic mug, a manual pour-over dripper, and freshly ground coffee.
+
+  The coffee bag (featured product) stands upright beside the brewing setup with the
+  label clearly visible. Steam rising gently from the mug.
+
+  Scene includes cozy winter elements such as a folded wool blanket on a nearby chair,
+  cinnamon sticks, a small bowl of coffee beans, and soft warm fairy lights in the
+  background creating subtle bokeh.
+
+  Composition should feel like a natural user-generated social media photo taken by
+  a home coffee enthusiast. Slightly imperfect, authentic, and warm.
+
+  Ensure clear visual spacing so that the campaign message can be placed in an empty
+  negative space area (top-right or bottom-right) without overlapping the product or
+  brewing equipment.
+
+  Color palette should lean warm and earthy to match the brand colors. Packaging should
+  appear matte and artisan-crafted.
+
+  Camera perspective: slightly angled overhead shot or eye-level close lifestyle shot
+  as if captured on a smartphone for Instagram.

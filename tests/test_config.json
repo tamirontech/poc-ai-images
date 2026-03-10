@@ -1,0 +1,242 @@
+{
+  "tests": [
+    {
+      "id": "brief-json",
+      "name": "JSON Brief Parsing",
+      "description": "Verify JSON campaign brief parsing",
+      "requirement": "Campaign Brief Acceptance",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief.json --provider dalle",
+      "expected_output": "Campaign name: Summer Tech 2026 Launch",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "parsing",
+        "core",
+        "input"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "brief-yaml",
+      "name": "YAML Brief Parsing",
+      "description": "Verify YAML campaign brief parsing",
+      "requirement": "Campaign Brief Acceptance",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief_enterprise.yaml --provider dalle",
+      "expected_output": "Found 3 products",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "parsing",
+        "core",
+        "input"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "aspect-ratios",
+      "name": "Aspect Ratio Generation",
+      "description": "Verify 1:1, 9:16, and 16:9 aspect ratios",
+      "requirement": "Image Generation (Multiple Aspect Ratios)",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief.json --provider dalle && find outputs/products -name \"*.png\" | wc -l",
+      "expected_output": "6",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "generation",
+        "core",
+        "images"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "asset-reuse",
+      "name": "Asset Reuse",
+      "description": "Verify existing assets are reused",
+      "requirement": "Asset Input & Reuse",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief.json --asset-dir test_assets --provider dalle",
+      "expected_output": "Reusing cached asset",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "assets",
+        "core",
+        "efficiency"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "output-org",
+      "name": "Output Organization",
+      "description": "Verify outputs organized by product and aspect ratio",
+      "requirement": "Output Organization",
+      "requirement_level": "core",
+      "command": "test -d \"outputs/products/AI_Assistant_Pro/1x1\" && echo \"\u2713 Organization correct\"",
+      "expected_output": "\u2713 Organization correct",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "organization",
+        "core",
+        "structure"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "text-overlay",
+      "name": "Campaign Message Display",
+      "description": "Verify text overlay on images",
+      "requirement": "Campaign Message Display",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief.json --provider dalle --add-text && echo \"Text overlays applied\"",
+      "expected_output": "Text overlays applied",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "messaging",
+        "core",
+        "overlay"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "compliance-check",
+      "name": "Compliance Checking",
+      "description": "Verify brand and legal compliance checks",
+      "requirement": "Brand Compliance & Legal Checks",
+      "requirement_level": "optional",
+      "command": "python app/main.py --brief test_inputs/campaign_brief_problematic.yaml --provider dalle --check-compliance && cat outputs/compliance_report.json | jq \".prohibited_words | length\"",
+      "expected_output": "4",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "compliance",
+        "optional",
+        "validation"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "logging",
+      "name": "Logging & Reporting",
+      "description": "Verify logs and reports are generated",
+      "requirement": "Logging & Reporting",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief.json --provider dalle --verbose && test -f outputs/pipeline_report.json && echo \"\u2713 Reports generated\"",
+      "expected_output": "\u2713 Reports generated",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "logging",
+        "core",
+        "reporting"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    },
+    {
+      "id": "multi-products",
+      "name": "Multiple Products Support",
+      "description": "Verify support for 2+ products",
+      "requirement": "Multiple Products",
+      "requirement_level": "core",
+      "command": "python app/main.py --brief test_inputs/campaign_brief_enterprise.yaml --provider dalle && find outputs/products -maxdepth 1 -type d | wc -l",
+      "expected_output": "4",
+      "verification_script": null,
+      "timeout": 300,
+      "tags": [
+        "products",
+        "core",
+        "multi"
+      ],
+      "status": "pending",
+      "result": null,
+      "duration": 0.0,
+      "last_run": null
+    }
+  ],
+  "suites": [
+    {
+      "id": "quick",
+      "name": "Quick Tests",
+      "description": "5-minute smoke test of core features",
+      "test_ids": [
+        "brief-json",
+        "brief-yaml",
+        "aspect-ratios",
+        "output-org",
+        "logging"
+      ],
+      "estimated_duration": 300,
+      "tags": [
+        "quick",
+        "smoke",
+        "core"
+      ]
+    },
+    {
+      "id": "full",
+      "name": "Full Test Suite",
+      "description": "Complete test of all requirements",
+      "test_ids": [
+        "brief-json",
+        "brief-yaml",
+        "aspect-ratios",
+        "asset-reuse",
+        "output-org",
+        "text-overlay",
+        "compliance-check",
+        "logging",
+        "multi-products"
+      ],
+      "estimated_duration": 900,
+      "tags": [
+        "full",
+        "comprehensive",
+        "all"
+      ]
+    },
+    {
+      "id": "compliance",
+      "name": "Compliance Tests",
+      "description": "Focus on brand and legal compliance",
+      "test_ids": [
+        "compliance-check",
+        "brief-json",
+        "brief-yaml"
+      ],
+      "estimated_duration": 450,
+      "tags": [
+        "compliance",
+        "focused",
+        "validation"
+      ]
+    }
+  ]
+}

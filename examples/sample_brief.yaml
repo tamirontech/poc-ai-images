@@ -1,0 +1,20 @@
+products:
+  - EcoSoap
+  - NaturalShampoo
+
+target_region: Japan
+target_audience: "Young professionals (25-35), eco-conscious, sustainability-focused"
+campaign_message: "Sustainable self-care for a better tomorrow"
+
+language: en
+
+brand_colors:
+  - "#2D5016"
+  - "#FFFFFF"
+
+aspect_ratios:
+  - "1:1"
+  - "9:16"
+  - "16:9"
+
+additional_context: "Vibrant, modern, minimalist design. Include natural elements and eco-friendly aesthetics."

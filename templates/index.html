@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Automation Pipeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .results h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .result-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-item.success {
+            border-left-color: #28a745;
+        }
+
+        .result-item.error {
+            border-left-color: #dc3545;
+        }
+
+        .result-item strong {
+            color: #333;
+        }
+
+        .result-item p {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: #f0f0f0;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 0.85em;
+        }
+
+        .tag.remove {
+            cursor: pointer;
+            margin-right: 0;
+        }
+
+        .tag.remove:hover {
+            background: #764ba2;
+        }
+
+        input.tag-input {
+            width: calc(100% - 60px);
+            display: inline-block;
+        }
+
+        .add-btn {
+            width: 50px;
+            margin-left: 10px;
+            padding: 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Creative Automation Pipeline</h1>
+            <p>AI-powered asset generation for scalable social campaigns</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Form Card -->
+            <div class="card">
+                <h2>Campaign Brief</h2>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+
+                <form id="campaignForm">
+                    <div class="form-group">
+                        <label for="products">Products *</label>
+                        <textarea id="products" placeholder="ProductA&#10;ProductB&#10;ProductC" required></textarea>
+                        <small style="color: #999;">One product per line (minimum 2)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetRegion">Target Region *</label>
+                        <input type="text" id="targetRegion" placeholder="e.g., Japan, US, Europe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetAudience">Target Audience *</label>
+                        <input type="text" id="targetAudience" placeholder="e.g., Young professionals, eco-conscious" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campaignMessage">Campaign Message *</label>
+                        <textarea id="campaignMessage" placeholder="Your campaign message..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="language">Language</label>
+                        <select id="language">
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="ja">Japanese</option>
+                            <option value="de">German</option>
+                            <option value="fr">French</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Aspect Ratios</label>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="ratio1x1" value="1:1" checked>
+                                <label for="ratio1x1" style="margin: 0;">Square (1:1) - Instagram, TikTok</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="ratio9x16" value="9:16" checked>
+                                <label for="ratio9x16" style="margin: 0;">Stories (9:16) - Instagram, Facebook Stories</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="ratio16x9" value="16:9" checked>
+                                <label for="ratio16x9" style="margin: 0;">Landscape (16:9) - LinkedIn, YouTube</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalContext">Additional Context (Optional)</label>
+                        <textarea id="additionalContext" placeholder="Any additional context or style preferences..."></textarea>
+                    </div>
+
+                    <button type="submit">Generate Creatives</button>
+                </form>
+            </div>
+
+            <!-- Results Card -->
+            <div class="card">
+                <h2>Generated Creatives</h2>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Generating your creatives...</p>
+                </div>
+
+                <div class="results" id="results" style="display: none;">
+                    <h3 id="resultsTitle"></h3>
+                    <div id="resultsList"></div>
+                    <div class="gallery" id="gallery"></div>
+                </div>
+
+                <div id="emptyState" style="text-align: center; color: #999; padding: 40px 20px;">
+                    <p>👈 Fill out the campaign brief and click "Generate Creatives" to see results here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('campaignForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const emptyState = document.getElementById('emptyState');
+
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            emptyState.style.display = 'none';
+
+            try {
+                // Parse products
+                const products = document.getElementById('products')
+                    .value.split('\n')
+                    .map(p => p.trim())
+                    .filter(p => p.length > 0);
+
+                if (products.length < 2) {
+                    throw new Error('Please enter at least 2 products');
+                }
+
+                // Get selected aspect ratios
+                const aspectRatios = [];
+                if (document.getElementById('ratio1x1').checked) aspectRatios.push('1:1');
+                if (document.getElementById('ratio9x16').checked) aspectRatios.push('9:16');
+                if (document.getElementById('ratio16x9').checked) aspectRatios.push('16:9');
+
+                // Build brief
+                const brief = {
+                    products,
+                    target_region: document.getElementById('targetRegion').value,
+                    target_audience: document.getElementById('targetAudience').value,
+                    campaign_message: document.getElementById('campaignMessage').value,
+                    language: document.getElementById('language').value,
+                    aspect_ratios: aspectRatios,
+                    additional_context: document.getElementById('additionalContext').value,
+                };
+
+                // Send to API
+                const formData = new FormData();
+                formData.append('brief_json', JSON.stringify(brief));
+
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Generation failed');
+                }
+
+                const result = await response.json();
+
+                // Display results
+                displayResults(result);
+                loading.style.display = 'none';
+                results.style.display = 'block';
+                successMsg.textContent = '✓ Creatives generated successfully!';
+                successMsg.style.display = 'block';
+
+            } catch (error) {
+                loading.style.display = 'none';
+                errorMsg.textContent = '✗ Error: ' + error.message;
+                errorMsg.style.display = 'block';
+                emptyState.style.display = 'block';
+            }
+        });
+
+        function displayResults(result) {
+            const resultsList = document.getElementById('resultsList');
+            const gallery = document.getElementById('gallery');
+            const resultsTitle = document.getElementById('resultsTitle');
+
+            resultsList.innerHTML = '';
+            gallery.innerHTML = '';
+
+            resultsTitle.textContent = `Generated: ${result.generated} / ${result.total_creatives} creatives`;
+
+            // Stats
+            const statsHtml = `
+                <div class="result-item success">
+                    <strong>Status:</strong> <span>${result.status}</span>
+                    <p>Products: ${result.products_processed} | Generated: ${result.generated} | Failed: ${result.failed}</p>
+                </div>
+            `;
+            resultsList.innerHTML = statsHtml;
+
+            // Gallery
+            if (result.outputs && Object.keys(result.outputs).length > 0) {
+                Object.entries(result.outputs).forEach(([product, ratios]) => {
+                    if (typeof ratios === 'object' && ratios !== null) {
+                        Object.entries(ratios).forEach(([ratio, files]) => {
+                            if (Array.isArray(files)) {
+                                files.forEach(file => {
+                                    const img = document.createElement('div');
+                                    img.className = 'gallery-item';
+                                    img.innerHTML = `
+                                        <img src="/api/outputs/${product}/${ratio}/${file}" alt="${product} ${ratio}">
+                                    `;
+                                    gallery.appendChild(img);
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        // Load example brief
+        window.addEventListener('load', () => {
+            // Optional: load a default example
+            const exampleBrief = {
+                products: 'EcoSoap\nNaturalShampoo',
+                targetRegion: 'Japan',
+                targetAudience: 'Young professionals, eco-conscious consumers',
+                campaignMessage: 'Sustainable self-care for a better tomorrow',
+                language: 'en',
+                additionalContext: 'Vibrant, modern, minimalist design',
+            };
+
+            // Uncomment to pre-fill form:
+            // Object.entries(exampleBrief).forEach(([key, value]) => {
+            //     const element = document.getElementById(key.charAt(0).toLowerCase() + key.slice(1));
+            //     if (element && value !== 'true' && value !== 'false') {
+            //         element.value = value;
+            //     }
+            // });
+        });
+    </script>
+</body>
+</html>

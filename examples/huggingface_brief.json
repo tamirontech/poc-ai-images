@@ -1,0 +1,25 @@
+{
+  "products": [
+    "Hugging Face Hub",
+    "Transformers Library",
+    "Model Inference"
+  ],
+  "target_region": "Global",
+  "target_audience": "ML engineers, data scientists, AI researchers, open-source developers",
+  "campaign_message": "Collaborate. Build. Share. The community-first platform for machine learning.",
+  "language": "en",
+  "brand_colors": [
+    "#FFD21E",
+    "#FF9D00",
+    "#6B7280"
+  ],
+  "logo_path": "huggingface_logo.png",
+  "logo_position": "bottom-right",
+  "logo_scale": 0.15,
+  "aspect_ratios": [
+    "1:1",
+    "9:16",
+    "16:9"
+  ],
+  "additional_context": "Hugging Face is the collaboration platform for the machine learning community. The Hugging Face Hub works as a central place where anyone can share, explore, discover, and experiment with open-source ML. HF empowers the next generation of machine learning engineers, scientists, and end users to learn, collaborate and share their work to build an open and ethical AI future together. With the fast-growing community, some of the most used open-source ML libraries and tools, and a talented science team exploring the edge of tech, Hugging Face is at the heart of the AI revolution. Visual style: Modern, inclusive, community-driven. Emphasize collaboration, open-source values, and cutting-edge AI technology. Show diverse developers, global connectivity, and shared innovation."
+}

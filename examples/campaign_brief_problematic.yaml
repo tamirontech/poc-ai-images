@@ -1,0 +1,17 @@
+campaign_name: Health Product Campaign
+target_region: USA
+target_audience: Health conscious consumers
+campaign_message: "100% guaranteed cure for all diseases - free trial included! Clinically proven results."
+products:
+  - Health Supplement Pro
+  - WellnessMax 2.0
+aspect_ratios:
+  - "1:1"
+  - "9:16"
+  - "16:9"
+visual_guidelines:
+  brand_colors:
+    - "#00A651"
+    - "#FFFFFF"
+  logo_required: false
+  tone: "medical, professional"

@@ -1,0 +1,19 @@
+campaign_name: Enterprise Solutions Q2 2026
+target_region: EMEA
+target_audience: Business professionals, enterprise decision makers
+campaign_message: "Enterprise-grade AI solutions for your organization"
+products:
+  - Enterprise Suite
+  - Data Analytics Platform
+  - Compliance Monitor
+aspect_ratios:
+  - "1:1"
+  - "9:16"
+  - "16:9"
+visual_guidelines:
+  brand_colors:
+    - "#1e40af"
+    - "#0f172a"
+    - "#ffffff"
+  logo_required: true
+  tone: "professional, trustworthy, enterprise"

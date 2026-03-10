@@ -1,0 +1,13 @@
+{
+  "products": ["EcoSoap", "NaturalShampoo"],
+  "target_region": "Japan",
+  "target_audience": "Young professionals, eco-conscious millennials",
+  "campaign_message": "Sustainable self-care for a better tomorrow",
+  "language": "en",
+  "brand_colors": ["#2D5016", "#FFFFFF", "#FFD700"],
+  "logo_path": "sample_logo.png",
+  "logo_position": "bottom-right",
+  "logo_scale": 0.15,
+  "aspect_ratios": ["1:1", "9:16", "16:9"],
+  "additional_context": "Modern, minimalist design with natural elements. Emphasize sustainability and eco-friendly packaging."
+}

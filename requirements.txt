@@ -1,0 +1,3 @@
+# Dependencies are defined in pyproject.toml.
+# This file installs the project with development extras for local workflows.
+-e .[dev]

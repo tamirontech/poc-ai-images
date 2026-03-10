@@ -699,7 +699,7 @@ Custom ratios can be added by extending `ImageProcessor.TARGET_SIZES`.
 ### Content Compliance
 - Dimension validation (ensures aspect ratio correctness)
 - Text overlay presence verification
-- Brand color verification via pixel grid sampling (Euclidean RGB distance)
+- Brand colour verification via pixel grid sampling (Euclidean RGB distance)
 - Extensible to image-based content moderation (future)
 
 ### Legal Considerations
@@ -715,11 +715,6 @@ The pipeline supports multiple image generation services. Choose based on your n
 
 ### DALL-E 3 (Default)
 
-**Quality:** ⭐⭐⭐⭐⭐ (Highest)  
-**Cost:** $0.03 per image  
-**Speed:** 10-20 seconds per image  
-**Availability:** Production-ready, backed by OpenAI
-
 **Setup:**
 
 ```bash
@@ -730,26 +725,9 @@ OPENAI_API_KEY=sk-...
 # 3. Run (uses DALL-E by default)
 python -m app.main run --brief examples/sample_brief.json
 ```
-
-**Pros:**
-- Highest quality images
-- Best for production use
-- Mature, stable API
-- Excellent prompt understanding
-
-**Cons:**
-- Paid service (~$0.03/image)
-- Requires OpenAI account
-- API key needed for authentication
-
 ---
 
 ### Hugging Face Inference API
-
-**Quality:** ⭐⭐⭐⭐ (Excellent)  
-**Cost:** Free tier available, Pro $9/month  
-**Speed:** 5-15 seconds per image  
-**Availability:** Community-driven, open-source models
 
 **Setup:**
 
@@ -768,25 +746,9 @@ python -m app.main run --brief examples/sample_brief.json --provider huggingface
 - `flux-dev` - Cutting-edge, higher quality
 - `flux-schnell` - Fast, good for quick iterations
 
-**Pros:**
-- Free tier available
-- Open-source models
-- No usage limits on free tier
-- Great for development/testing
-
-**Cons:**
-- Free tier has rate limits
-- Quality slightly lower than DALL-E
-- Community-dependent
-
 ---
 
 ### Replicate
-
-**Quality:** ⭐⭐⭐⭐ (Excellent)  
-**Cost:** Free tier + pay-as-you-go ($0.005-0.06/image)  
-**Speed:** 10-30 seconds per image  
-**Availability:** Reliable API, multiple model providers
 
 **Setup:**
 
@@ -805,25 +767,9 @@ python -m app.main run --brief examples/sample_brief.json --provider replicate
 - `flux-dev` - Advanced
 - `flux-schnell` - Fast
 
-**Pros:**
-- Simple API
-- Multiple model options
-- Pay-as-you-go pricing
-- Good uptime
-
-**Cons:**
-- Paid service after free tier
-- Slightly slower than direct API calls
-- Rate limits on free tier
-
 ---
 
 ### Adobe Firefly
-
-**Quality:** ⭐⭐⭐⭐⭐ (State-of-the-art)  
-**Cost:** Variable by plan (free credits available)  
-**Speed:** 20-40 seconds per image  
-**Availability:** Production-ready, backed by Adobe
 
 **Setup:**
 
@@ -836,69 +782,9 @@ FIREFLY_API_KEY=your-adobe-api-key
 python -m app.main run --brief examples/sample_brief.json --provider firefly
 ```
 
-**Features:**
-- Text-to-image generation
-- Photo and art content classes
-- Multiple resolution options
-- Async job processing with automatic polling
-
-**Pros:**
-- Cutting-edge generative AI
-- Adobe Creative Cloud integration potential
-- Comprehensive API documentation
-- Content categorization (photo/art)
-- Free tier available
-
-**Cons:**
-- Newer service
-- Requires Adobe account
-- Async processing (job polling)
-- Lower availability compared to DALL-E
-
 **Learn More:**
 - 📖 [Firefly Integration Guide](./docs/providers/FIREFLY_INTEGRATION.md)
 - 🔗 [Official Firefly API Docs](https://developer.adobe.com/firefly-services/)
-
----
-
-### DALL-E Provider
-
-**Quality:** ⭐⭐ (Placeholder)  
-**Cost:** Free  
-**Speed:** <1 second per image  
-**Availability:** Always available
-
-**Setup:**
-
-```bash
-# No setup needed - use --provider dalle flag
-python -m app.main run --brief examples/sample_brief.json --provider dalle
-```
-
-**Pros:**
-- No API key needed
-- Instant generation
-- Perfect for testing/demo
-- No costs
-
-**Cons:**
-- Placeholder images only (not real creatives)
-- Not suitable for production
-
----
-
-## 📊 Provider Comparison
-
-| Feature | DALL-E | Hugging Face | Replicate | Firefly | Mock |
-|---------|--------|--------------|-----------|---------|------|
-| **Quality** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ |
-| **Speed** | 10-20s | 5-15s | 10-30s | 20-40s | <1s |
-| **Cost** | $0.03/img | Free/Pro | Free+ | Free+ | Free |
-| **Free Tier** | No (trial) | Yes | Yes | Yes | Yes |
-| **Production Use** | ✅ | ✅ | ✅ | ✅ | ❌ |
-| **APIs Key** | Required | Required | Required | Required | No |
-| **Setup Time** | <5 min | <5 min | <5 min | <5 min | 0 min |
-| **Async Support** | ❌ | ❌ | ✅ | ✅ | ❌ |
 
 ---
 
@@ -939,27 +825,10 @@ REPLICATE_MODEL=stable-diffusion-3
 
 ---
 
-
-
 - **API Keys:** Never commit `.env` to version control (use `.env.example`)
 - **Generated Assets:** Saved locally; no automatic uploading
 - **Logging:** Includes campaign details; review before sharing logs
 - **Rate Limits:** DALL-E API has usage limits; monitor cost
-
----
-
-## 📈 Performance & Costs
-
-### Typical Performance
-- **Cache hit:** < 1 second per asset
-- **DALL-E generation:** 10–20 seconds per image (includes download)
-- **Image processing:** < 1 second per resize
-- **Full campaign:** 2 products × 3 ratios = ~60 seconds
-
-### Estimated Costs (DALL-E 3)
-- **Per image:** $0.03 (1024×1024, standard quality)
-- **2 products × 3 ratios:** ~$0.18 per campaign
-- **100 campaigns/month:** ~$18
 
 ---
 
@@ -982,117 +851,6 @@ REPLICATE_MODEL=stable-diffusion-3
 - [ ] Image-to-image variations (e.g., style transfer)
 - [ ] Authentication and role-based access control
 - [ ] Webhook integration for approval workflows
-
----
-
-## 🎬 Demo Recording Instructions
-
-To record a demo video (2–3 minutes) for interviewers:
-
-### Pre-Recording Checklist
-1. ✅ Create `.env` with your OPENAI_API_KEY (or use --provider dalle)
-2. ✅ Activate venv: `source venv/bin/activate`
-3. ✅ Install dependencies: `pip install -e .`
-4. ✅ Test CLI with a configured provider: `python -m app.main run --brief examples/sample_brief.json --provider replicate`
-5. ✅ Test web UI: `python -m app.main serve` → http://localhost:8000
-
-### Recording Content Outline
-
-**1. Introduction (0:00–0:15)**
-- Brief intro: "This is the Creative Automation Pipeline, an AI-powered tool for generating social ad creatives at scale."
-
-**2. CLI Demo (0:15–1:00)**
-```bash
-# Show venv activation
-source venv/bin/activate
-
-# Show campaign brief
-cat examples/sample_brief.json
-
-# Run CLI
-python -m app.main run --brief examples/sample_brief.json --provider replicate
-
-# Show output directory
-open outputs/
-# Walk through product folders, aspect ratios, generated PNGs
-```
-
-**3. Web UI Demo (1:00–2:00)**
-```bash
-# Restart venv if needed
-source venv/bin/activate
-
-python -m app.main serve
-# Open http://localhost:8000
-# Fill out form (use example values)
-# Trigger generation
-# Show results gallery
-# Show report
-```
-
-**4. Highlights (2:00–2:30)**
-- Mention key features: multi-format, compliance checks, logging, caching
-- Note: Can generate hundreds of variants quickly
-- Show final report (costs, timing, compliance)
-
-### Recording Tools
-- **Mac:** QuickTime (`CMD+SPACE` → "QuickTime Player" → File → New Screen Recording)
-- **Windows:** Xbox Game Bar (`WIN+G`)
-- **Linux/Cross-platform:** OBS Studio (free)
-
-### Tips
-- **Clear narration:** Speak slowly, explain each step
-- **Visible output:** Zoom in on terminal/browser (200% on Mac: System Prefs → Accessibility → Display → Resolution)
-- **Logical flow:** Start simple (CLI), then interactive (web)
-- **Avoid delays:** Use test generator for predictable speed
-
----
-
-## 📁 Project Structure
-
-```
-poc-ai-images/
-├── app/
-│   ├── __init__.py              # Package init
-│   ├── main.py                  # CLI + FastAPI entry point
-│   ├── parsers.py               # Campaign brief validation
-│   ├── generator.py             # DALL-E integration
-│   ├── processor.py             # Image resizing, text overlay, logo overlay
-│   ├── compliance.py            # Brand & legal checks
-│   ├── storage.py               # Local file management
-│   └── logger.py                # Logging & reporting
-├── templates/
-│   └── index.html               # Web UI (FastAPI frontend)
-├── static/                       # CSS/JS assets (if cached locally)
-├── examples/
-│   ├── sample_brief.json        # Example JSON campaign brief
-│   ├── sample_brief.yaml        # Example YAML campaign brief
-│   ├── logo_brief.json          # Example brief with logo configuration
-│   └── campaign_brief*.json/yaml# Additional example briefs
-├── input_assets/                 # Logos & reference images for campaigns
-├── outputs/
-│   ├── products/                 # Generated creatives (git-ignored)
-│   └── .tmp/                     # Temporary processing files (git-ignored)
-├── logs/                         # Execution logs (git-ignored)
-├── tests/                        # Unit & integration tests
-├── pyproject.toml               # Project metadata & dependencies
-├── .env.example                 # Environment template
-├── .gitignore                  # Git ignore file
-└── README.md                    # This file
-```
-
----
-
-## 🤝 Contributing
-
-This is a PoC for demonstration purposes. For production use:
-
-1. **Extend compliance checks** – Integrate ML-based content moderation
-2. **Add cloud storage** – AWS S3, Azure Blob for asset management
-3. **Database integration** – Store campaign metadata and analytics
-4. **Authentication** – Add user management and API keys
-5. **Webhooks** – Post-generation notifications and approvals
-6. **Analytics** – Track asset performance and CTR
 
 ---
 
@@ -1208,20 +966,6 @@ For questions or issues:
 ## 📄 License
 
 This project is provided as-is for demonstration and evaluation purposes.
-
----
-
-## 🙏 Acknowledgments
-
-Built with:
-- **OpenAI DALL-E 3** – State-of-the-art image generation
-- **FastAPI** – Modern Python web framework
-- **Pillow** – Image processing
-- **Pydantic** – Data validation
-
----
-
-**Ready to generate amazing social creatives? Let's go! 🚀**
 
 ```bash
 python -m app.main run --brief examples/sample_brief.json --provider dalle
